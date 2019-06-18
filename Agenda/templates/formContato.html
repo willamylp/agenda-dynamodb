@@ -1,49 +1,38 @@
 {% load widget_tweaks %}
+
 <form id="form_validation" method="POST">
     {% csrf_token %}
+    {{ form.as_p }}
     <br>
     <div class="body">
         <div class="row clearfix">
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <div class="form-group">
-                    <b><span class="marcadorRequired">*</span> HOSTNAME</b>
+                    <b><span class="marcadorRequired">*</span> NOME COMPLETO</b>
                     <div class="form-line">
-                        {{ form.hostname|add_class:'form-control' }}
+                        {{ form.nome|add_class:'form-control' }}
+                    </div>
+                </div>
+            </div>
+            {% comment %} === {% endcomment %}
+            <div class="col-md-4">
+                <div class="form-group">
+                    <b><span class="marcadorRequired">*</span> E-MAIL</b>
+                    <div class="form-line">
+                        {{ form.email|add_class:'form-control' }}
                     </div>
                 </div>
             </div>
             {% comment %} === {% endcomment %}
             <div class="col-md-3">
                 <div class="form-group">
-                    <b><span class="marcadorRequired">*</span> PORTA</b>
+                    <b><span class="marcadorRequired">*</span> TELEFONE</b>
                     <div class="form-line">
-                        {{ form.porta|add_class:'form-control' }}
-                    </div>
-                </div>
-            </div>
-            {% comment %} === {% endcomment %}
-            <div class="col-md-3">
-                <div class="form-group">
-                    <b><span class="marcadorRequired">*</span> TIPO DE HOST</b>
-                    <div class="form-line">
-                        {{ form.tipoHost|add_class:'form-control show-tick' }}
+                        {{ form.email|add_class:'form-control' }}
                     </div>
                 </div>
             </div>
             {% comment %}  {% endcomment %}
-        </div>
-        <div class="row clearfix">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <b><span class="marcadorRequired">*</span> DESCRIÇÃO</b>
-                    <div class="form-line">
-                        {{ form.descricao|add_class:'form-control' }}
-                    </div>
-                </div>
-                <br>
-                <h4><span class="marcadorRequired">*</span> Campos Obrigatórios</h4>
-                <br><br>
-            </div>
         </div>
         <div class="row clearfix" align="left">
             <div class="col-md-4">

@@ -1,16 +1,12 @@
 from django.db import models
 
 # Create your models here.
-
-from django.db import models
-
-# Create your models here.
-class Agenda(models.Model):
-	nome = models.CharField(
+class Contatos(models.Model):
+    nome = models.CharField(
         max_length=100,
         blank=False
     )
-	email = models.CharField(
+    email = models.CharField(
         max_length=100,
         blank=False
     )

@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Hosts
+from Agenda.models import Contatos
 
-admin.site.register(Agenda)
+admin.site.register(Contatos)
 
 # Register your models here.
