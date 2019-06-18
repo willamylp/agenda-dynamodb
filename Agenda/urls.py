@@ -3,6 +3,6 @@ from Agenda.views import Principal, RegistrarContato, ListarContatos
 
 urlpatterns = [
     path('', Principal, name="Principal"),
-    path('', RegistrarContato, name="RegistroContato"),
+    path('RegistrarContato/', RegistrarContato, name="RegistrarContato"),
     path('ListarContatos/', ListarContatos, name="ListarContato"),
 ]

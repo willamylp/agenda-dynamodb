@@ -1,7 +1,9 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from urllib import request
-from Agenda.models import Contatos
-from Agenda.forms import AgendaForm
+from django.contrib import messages
+from .models import Contatos
+from .forms import AgendaForm
+from Agenda import urls
 
 def Principal(request):
     return render(request, './principal.html')
@@ -11,12 +13,12 @@ def RegistrarContato(request):
     if(form.is_valid()):
         form.save()
         messages.success(request, 'Contato Registrado com Sucesso!')
-        return redirect('')
-    return render(request, './principal.html', {'form': form})
+        return redirect('./ListarContatos/')
+    return render(request, 'principal.html', {'form': form})
 
 # Create your views here.
 def ListarContatos(request):
-    contatos = Contatos.objects.all().values()
+    contatos = Contatos.objects.all()
     '''contatos2 = json.loads(json.dumps(list(contatos), cls=DjangoJSONEncoder))
     for i in range(len(contatos2)):
         print("-->>>> Contato {}: {}".format(i, contatos2[i]['nome']))
