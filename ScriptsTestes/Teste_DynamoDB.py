@@ -17,10 +17,38 @@ def InsertInto():
             'E-mail': 'willamy.wlp@gmail.com'
         }
     )
+def GetItem():
+    dynamoTable = GetDynamoTable()
+    return dynamoTable.get_item(
+        Key = {
+            'id': 11
+        }
+    )
 
-def DeleteItem(dynamoTable, key):
-    pass
+def UpdateItem(ID):
+    dynamoTable = GetDynamoTable()
+    dynamoTable.update_item(
+        Key = {
+            'id': 11
+        },
+        UpdateExpression = 'SET Nome = :Nome, Telefone = :Telefone',
+        ExpressionAttributeValues = {
+            ':Nome': 'Willamy D O Joventino',
+            ':Telefone': '(84)9 9669-2906'
+        }
+    )
+
+def DeleteItem(ID):
+    dynamoTable = GetDynamoTable()
+    dynamoTable.delete_item(
+        Key = {
+            'id': 11
+        }
+    )
 
 
-InsertInto()
+
+#print('Antes do Update:\t{}'.format(GetItem()['Item']))
+DeleteItem(11)
+#print('Depois do Update:\t{}'.format(GetItem()['Item']))
 
