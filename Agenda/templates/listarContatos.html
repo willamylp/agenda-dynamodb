@@ -42,6 +42,7 @@
                                 <h4 style="margin-bottom: -5px; color: #444444;">Exportar Registros</h4>
                                 <thead>
                                     <tr>
+                                        <th>ID</th>
                                         <th>NOME COMPLETO</th>
                                         <th>E-MAIL</th>
                                         <th>TELEFONE</th>
@@ -52,6 +53,7 @@
                                 {% comment %} 
                                 <tfoot>
                                     <tr>
+                                        <th>ID</th>
                                         <th>NOME COMPLETO</th>
                                         <th>E-MAIL</th>
                                         <th>TELEFONE</th>
@@ -64,8 +66,9 @@
                                     {% for contato in contatos %}
                                     <tr>
                                         <td>
-                                            <strong>{{ contato.nome }}</strong>
+                                            <strong>{{ contato.id }}</strong>
                                         </td>
+                                        <td>{{ contato.nome }}</td>
                                         <td>{{ contato.email }}</td>
                                         <td>{{ contato.telefone }}</td>
                                         <td>

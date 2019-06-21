@@ -1,22 +1,26 @@
 import boto3
 
-dynamodb = boto3.resource('dynamodb')
-dynamoTable = dynamodb.Table('agenda')
+
+def GetDynamoTable():
+    dynamodb = boto3.resource('dynamodb')
+    dynamoTable = dynamodb.Table('agenda')
+    return dynamoTable
 
 
-def InsertInto(dynamoTable):
+def InsertInto():
+    dynamoTable = GetDynamoTable()
     dynamoTable.put_item(
         Item = {
-            'id': 2,
-            'Nome': 'Willamy',
+            'id': 3,
+            'Nome': 'Willamy 3333',
             'Telefone': '(84) 9 9669-2906',
             'E-mail': 'willamy.wlp@gmail.com'
         }
     )
 
 def DeleteItem(dynamoTable, key):
-    
+    pass
 
 
-InsertInto(dynamoTable)
+InsertInto()
 

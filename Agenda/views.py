@@ -4,25 +4,46 @@ from django.contrib import messages
 from .models import Contatos
 from .forms import AgendaForm
 from Agenda import urls
+import json
+import boto3
+from django.core.serializers.json import DjangoJSONEncoder
 
+def GetDynamoTable():
+    dynamodb = boto3.resource('dynamodb')
+    dynamoTable = dynamodb.Table('agenda')
+    return dynamoTable
+
+def InsertIntoDynamoDB(contentJSON):
+    dynamoTable = GetDynamoTable()
+    dynamoTable.put_item(
+        Item = {
+            'id': 3,
+            'Nome': 'Willamy 3333',
+            'Telefone': '(84) 9 9669-2906',
+            'E-mail': 'willamy.wlp@gmail.com'
+        }
+    )
+    
+
+def ConvertDataJSON(Table):
+    dados = Table.objects.all().values()
+    contentJSON = json.loads(json.dumps(list(dados), cls=DjangoJSONEncoder))
+    return contentJSON
+
+# -------------------------------------------------------- #
 def RegistrarContato(request):
     form = AgendaForm(request.POST or None)
     if(form.is_valid()):
         form.save()
         messages.success(request, 'Contato Registrado com Sucesso!')
-        print(form)
+        ConvertDataJSON(Contatos)
         return redirect('/')
     return render(request, './formContato.html', {'form': form})
 
-# Create your views here.
 def ListarContatos(request):
     contatos = Contatos.objects.all()
-    '''contatos2 = json.loads(json.dumps(list(contatos), cls=DjangoJSONEncoder))
-    for i in range(len(contatos2)):
-        print("-->>>> Contato {}: {}".format(i, contatos2[i]['nome']))
-        print(contatos2[i].values())'''
+    ConvertDataJSON()
     return render(request, './listarContatos.html', {'contatos': contatos})
-# Create your views here.
 
 def AtualizarContato(request, id):
     contato = get_object_or_404(Contatos, pk=id)
