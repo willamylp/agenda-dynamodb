@@ -25,9 +25,9 @@ function ConfirmarDelete(valor) {
             var urlAtual = window.location.href;
             var urlAtual = urlAtual.split('/');
             if (urlAtual.length > 6) {
-                url = '../../DeletarHost/' + valor;
+                url = '../DeletarContato/' + valor;
             } else {
-                url = '../DeletarHost/' + valor;
+                url = './DeletarContato/' + valor;
             }
             location.href = url;
         } else if (
